@@ -7,6 +7,9 @@ namespace TaskTimeTrackerApi
     using TaskTimeTrackerApi.ViewModels;
     using Boxed.Mapping;
     using Microsoft.Extensions.DependencyInjection;
+    using TaskTimeTrackerApi.Commands.Projects;
+    using Core.Interfaces;
+    using EFDataAccess.MockData;
 
     /// <summary>
     /// <see cref="IServiceCollection"/> extension methods add project services.
@@ -25,17 +28,25 @@ namespace TaskTimeTrackerApi
                 .AddSingleton<IGetCarPageCommand, GetCarPageCommand>()
                 .AddSingleton<IPatchCarCommand, PatchCarCommand>()
                 .AddSingleton<IPostCarCommand, PostCarCommand>()
-                .AddSingleton<IPutCarCommand, PutCarCommand>();
+                .AddSingleton<IPutCarCommand, PutCarCommand>()
+                .AddSingleton<IDeleteProjectCommand, DeleteProjectCommand>()
+                .AddSingleton<IGetProjectCommand, GetProjectCommand>()
+                .AddSingleton<IGetProjectPageCommand, GetProjectPageCommand>();
 
         public static IServiceCollection AddProjectMappers(this IServiceCollection services) =>
             services
                 .AddSingleton<IMapper<Models.Car, Car>, CarToCarMapper>()
                 .AddSingleton<IMapper<Models.Car, SaveCar>, CarToSaveCarMapper>()
-                .AddSingleton<IMapper<SaveCar, Models.Car>, CarToSaveCarMapper>();
+                .AddSingleton<IMapper<SaveCar, Models.Car>, CarToSaveCarMapper>()
+                .AddSingleton<IMapper<Core.Models.Project, Project>, ProjectToProjectMapper>()
+                .AddSingleton<IMapper<Core.Models.Project, SaveProject>, ProjectToSaveProjectMapper>()
+                .AddSingleton<IMapper<SaveProject, Core.Models.Project>, ProjectToSaveProjectMapper>();
 
         public static IServiceCollection AddProjectRepositories(this IServiceCollection services) =>
             services
-                .AddSingleton<ICarRepository, CarRepository>();
+                .AddSingleton<ICarRepository, CarRepository>()
+            .AddSingleton<IProjectRepository, MockProjectRepository>();
+
 
         public static IServiceCollection AddProjectServices(this IServiceCollection services) =>
             services

@@ -54,8 +54,8 @@ namespace TaskTimeTrackerApi
                 .AddCustomApiVersioning()
                 .AddServerTiming()
                 .AddControllers()
-                    .AddCustomJsonOptions(this.webHostEnvironment)
-                    .AddCustomMvcOptions(this.configuration)
+                .AddCustomJsonOptions(this.webHostEnvironment)
+                .AddCustomMvcOptions(this.configuration)
                 .Services
                 .AddProjectCommands()
                 .AddProjectMappers()

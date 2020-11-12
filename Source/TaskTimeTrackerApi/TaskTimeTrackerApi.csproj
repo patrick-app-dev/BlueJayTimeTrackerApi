@@ -48,4 +48,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\EFDataAccess\EFDataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
