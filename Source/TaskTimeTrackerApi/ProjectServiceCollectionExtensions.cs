@@ -31,7 +31,9 @@ namespace TaskTimeTrackerApi
                 .AddSingleton<IPutCarCommand, PutCarCommand>()
                 .AddSingleton<IDeleteProjectCommand, DeleteProjectCommand>()
                 .AddSingleton<IGetProjectCommand, GetProjectCommand>()
-                .AddSingleton<IGetProjectPageCommand, GetProjectPageCommand>();
+                .AddSingleton<IGetProjectPageCommand, GetProjectPageCommand>()
+                .AddSingleton<IPostProjectCommand, PostProjectCommand>();
+                
 
         public static IServiceCollection AddProjectMappers(this IServiceCollection services) =>
             services

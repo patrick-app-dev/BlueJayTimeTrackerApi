@@ -4,18 +4,19 @@ namespace TaskTimeTrackerApi.Constants
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using TaskTimeTrackerApi.Controllers;
 
     public static class ProjectsControllerRoute
     {
-        public const string DeleteProject = ControllerName.Cars + nameof(DeleteProject);
-        public const string GetProject = ControllerName.Cars + nameof(GetProject);
-        public const string GetProjectPage = ControllerName.Cars + nameof(GetProjectPage);
-        public const string HeadProject = ControllerName.Cars + nameof(HeadProject);
-        public const string HeadProjectPage = ControllerName.Cars + nameof(HeadProjectPage);
-        public const string OptionsProject = ControllerName.Cars + nameof(OptionsProject);
-        public const string OptionsProjects = ControllerName.Cars + nameof(OptionsProjects);
-        public const string PatchProject = ControllerName.Cars + nameof(PatchProject);
-        public const string PostProject = ControllerName.Cars + nameof(PostProject);
-        public const string PutProject = ControllerName.Cars + nameof(PutProject);
+        public const string DeleteProject = ProjectsControllerName.Projects + nameof(DeleteProject);
+        public const string GetProject = ProjectsControllerName.Projects + nameof(GetProject);
+        public const string GetProjectPage = ProjectsControllerName.Projects + nameof(GetProjectPage);
+        public const string HeadProject = ProjectsControllerName.Projects + nameof(HeadProject);
+        public const string HeadProjectPage = ProjectsControllerName.Projects + nameof(HeadProjectPage);
+        public const string OptionsProject = ProjectsControllerName.Projects + nameof(OptionsProject);
+        public const string OptionsProjects = ProjectsControllerName.Projects + nameof(OptionsProjects);
+        public const string PatchProject = ProjectsControllerName.Projects + nameof(PatchProject);
+        public const string PostProject = ProjectsControllerName.Projects + nameof(PostProject);
+        public const string PutProject = ProjectsControllerName.Projects + nameof(PutProject);
     }
 }

@@ -24,6 +24,17 @@ namespace TaskTimeTrackerApi.Controllers
     public class ProjectsController : ControllerBase
     {
 
+        [HttpPost("", Name = ProjectsControllerRoute.PostProject)]
+        [SwaggerResponse(StatusCodes.Status201Created, "The project was created.", typeof(Project))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, "The project is invalid.", typeof(ProblemDetails))]
+        [SwaggerResponse(StatusCodes.Status406NotAcceptable, "The MIME type in the Accept HTTP header is not acceptable.", typeof(ProblemDetails))]
+        [SwaggerResponse(StatusCodes.Status415UnsupportedMediaType, "The MIME type in the Content-Type HTTP header is unsupported.", typeof(ProblemDetails))]
+
+        public Task<IActionResult> PostAsync(
+            [FromServices] IPostProjectCommand command,
+            [FromBody] SaveProject project,
+            CancellationToken cancellationToken) => command.ExecuteAsync(project, cancellationToken);
+
         /// <summary>
         /// Deletes the car with the specified unique identifier.
         /// </summary>
@@ -79,5 +90,9 @@ namespace TaskTimeTrackerApi.Controllers
          [FromServices] IGetProjectPageCommand command,
          [FromQuery] PageOptions pageOptions,
          CancellationToken cancellationToken) => command.ExecuteAsync(pageOptions, cancellationToken);
-        }
+
+
+
+    }
+
 }
