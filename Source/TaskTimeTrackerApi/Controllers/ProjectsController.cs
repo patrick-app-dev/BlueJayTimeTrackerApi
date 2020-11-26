@@ -91,6 +91,26 @@ namespace TaskTimeTrackerApi.Controllers
          [FromQuery] PageOptions pageOptions,
          CancellationToken cancellationToken) => command.ExecuteAsync(pageOptions, cancellationToken);
 
+        /// <summary>
+        /// Updates an existing project with the specified unique identifier.
+        /// </summary>
+        /// <param name="command">The action command.</param>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="project">The project to update.</param>
+        /// <param name="cancellationToken">The cancellation token used to cancel the HTTP request.</param>
+        /// <returns>A 200 OK response containing the newly updated car, a 400 Bad Request if the car is invalid or a
+        /// or a 404 Not Found if a car with the specified unique identifier was not found.</returns>
+        [HttpPut("{projectId}", Name = ProjectsControllerRoute.PutProject)]
+        [SwaggerResponse(StatusCodes.Status200OK, "The project was updated.", typeof(Project))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, "The project is invalid.", typeof(ProblemDetails))]
+        [SwaggerResponse(StatusCodes.Status404NotFound, "A project with the specified unique identifier could not be found.", typeof(ProblemDetails))]
+        [SwaggerResponse(StatusCodes.Status406NotAcceptable, "The MIME type in the Accept HTTP header is not acceptable.", typeof(ProblemDetails))]
+        [SwaggerResponse(StatusCodes.Status415UnsupportedMediaType, "The MIME type in the Content-Type HTTP header is unsupported.", typeof(ProblemDetails))]
+        public Task<IActionResult> PutAsync(
+            [FromServices] IPutProjectCommand command,
+            int projectId,
+            [FromBody] SaveProject project,
+            CancellationToken cancellationToken) => command.ExecuteAsync(projectId, project, cancellationToken);
 
 
     }
