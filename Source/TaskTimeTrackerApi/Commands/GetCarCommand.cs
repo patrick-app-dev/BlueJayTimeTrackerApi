@@ -33,7 +33,7 @@ namespace TaskTimeTrackerApi.Commands
             var car = await this.carRepository.GetAsync(carId, cancellationToken).ConfigureAwait(false);
             if (car is null)
             {
-                return new NotFoundResult();
+                return new NotFoundObjectResult(carId);
             }
 
             var httpContext = this.actionContextAccessor.ActionContext.HttpContext;
